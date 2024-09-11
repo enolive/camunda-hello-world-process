@@ -1,0 +1,8 @@
+camunda:
+  bpm:
+    admin-user:
+      id: camunda
+      password: camunda
+      email: camunda@localhost
+    filter:
+      create: "All Tasks"
