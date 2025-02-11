@@ -1,14 +1,11 @@
 ### Greet specified name!
 POST http://localhost:8080/hello/Maggo
-
-### Fail greetings
-POST http://localhost:8080/hello/Chris
-
-### Decide on a dish
-POST http://localhost:8080/dish
 Content-Type: application/json
 
 {
-  "season": "Spring",
-  "guestCount": 6
+  "season": "Fall",
+  "guestCount": 4
 }
+
+### Fail greetings
+POST http://localhost:8080/hello/Chris
