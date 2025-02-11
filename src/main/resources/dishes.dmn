@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:camunda="http://camunda.org/schema/1.0/dmn" id="Definitions_0xuxkxd" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.24.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.21.0">
+  <decision id="dish" name="Dish" camunda:historyTimeToLive="90">
+    <decisionTable id="DecisionTable_11a9yl5" hitPolicy="FIRST">
+      <input id="Input_1" label="Season">
+        <inputExpression id="InputExpression_1" typeRef="string">
+          <text>season</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_1ifgora" label="how many guests">
+        <inputExpression id="LiteralExpression_0bmliwo" typeRef="integer">
+          <text>guestCount</text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" label="Dish" name="desiredDish" typeRef="string" />
+      <rule id="DecisionRule_0v5ikua">
+        <inputEntry id="UnaryTests_0q434ot">
+          <text>"Fall"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0mmvqqn">
+          <text>&lt;= 8</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0cdz48e">
+          <text>"Spareribs"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_12pvr10">
+        <inputEntry id="UnaryTests_0u6vru8">
+          <text>"Winter"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ecq2qd">
+          <text>&lt;= 8</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_05rfhjj">
+          <text>"Roastbeef"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_086zi3o">
+        <inputEntry id="UnaryTests_0x64zdb">
+          <text>"Spring"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_15rv2lz">
+          <text>&lt;= 4</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0xh3xn9">
+          <text>"Dry Aged Gourmet Steak"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1lz7zk6">
+        <description>Save money</description>
+        <inputEntry id="UnaryTests_0367pt6">
+          <text>"Spring"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1hfzfgu">
+          <text>[5..8]</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0dgzuvu">
+          <text>"Steak"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1kjoah8">
+        <description>Less effort</description>
+        <inputEntry id="UnaryTests_1o5fjjy">
+          <text>["Fall","Winter","Spring"]</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1yed44i">
+          <text>&gt; 8</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0spv1w8">
+          <text>"Stew"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0woqbzn">
+        <description>Hey, why not?</description>
+        <inputEntry id="UnaryTests_1no7cre">
+          <text>"Summer"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1xfu98h">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0l8fqml">
+          <text>"Light salad and nice steak"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_08zefjr">
+        <description>Fallback if every other decision fails</description>
+        <inputEntry id="UnaryTests_03grfug">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0tz2qb9">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_12qupmr">
+          <text>"Fuck you!"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="dish">
+        <dc:Bounds height="80" width="180" x="160" y="100" />
+      </dmndi:DMNShape>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>
