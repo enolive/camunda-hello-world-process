@@ -12,7 +12,9 @@ class VerifyName : JavaDelegate {
     val optionalName = execution.getVariableTyped<StringValue>("name")
     val name = optionalName?.value ?: "World"
     if (name == "Chris") {
-      throw BpmnError("VerifyFailed")
+      throw VerifyError()
     }
   }
 }
+
+class VerifyError : BpmnError("VerifyError")

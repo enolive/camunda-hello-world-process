@@ -4,9 +4,9 @@ import io.github.oshai.kotlinlogging.KotlinLogging
 import org.camunda.bpm.engine.delegate.DelegateExecution
 import org.camunda.bpm.engine.delegate.JavaDelegate
 import org.camunda.bpm.engine.variable.value.StringValue
-import org.springframework.stereotype.Service
+import org.springframework.stereotype.Component
 
-@Service
+@Component
 class PrintHello : JavaDelegate {
   private val logger = KotlinLogging.logger { }
 
@@ -16,5 +16,3 @@ class PrintHello : JavaDelegate {
     logger.info { "Hello $name!" }
   }
 }
-
-class HelloWorldException(message: String) : Throwable(message)

@@ -33,7 +33,13 @@ dependencies {
   developmentOnly("org.springframework.boot:spring-boot-docker-compose")
   testImplementation("org.springframework.boot:spring-boot-starter-test")
   testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
+  testImplementation("org.camunda.bpm:camunda-bpm-junit5:$camundaVersion")
+  testImplementation("org.camunda.bpm:camunda-bpm-assert:$camundaVersion")
+  testImplementation("io.kotest:kotest-assertions-core:5.9.1")
+  testImplementation("io.mockk:mockk:1.13.16")
+  testImplementation("org.camunda.community.process_test_coverage:camunda-process-test-coverage-junit5-platform-7:2.7.0")
   testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+  testRuntimeOnly("com.h2database:h2")
 }
 
 kotlin {
