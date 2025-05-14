@@ -37,6 +37,7 @@ class ProcessTest {
     // necessary because of boundary step
     assertThat(instance).isWaitingAt("PrintHello")
     assertThat(instance).variables().containsEntry("desiredDish", "Dry Aged Gourmet Steak")
+    assertThat(instance).variables().containsEntry("confidence", 42)
 
     execute(job())
 

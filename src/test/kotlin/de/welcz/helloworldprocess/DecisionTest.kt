@@ -2,11 +2,11 @@ package de.welcz.helloworldprocess
 
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
-import org.camunda.bpm.dmn.engine.DmnDecisionTableResult
 import org.camunda.bpm.engine.ProcessEngine
 import org.camunda.bpm.engine.test.Deployment
 import org.camunda.bpm.engine.test.junit5.ProcessEngineExtension
 import org.camunda.bpm.engine.variable.Variables
+import org.camunda.bpm.engine.variable.value.IntegerValue
 import org.camunda.bpm.engine.variable.value.StringValue
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
@@ -24,7 +24,10 @@ class DecisionTest {
 
     val result = processEngine.decisionService.evaluateDecisionTableByKey("dish", inputs)
 
-    result.getDesiredDishOrFail() shouldBe "Spareribs"
+    run {
+      val stringValue = result.singleResult.getEntryTyped<StringValue>("desiredDish")
+      stringValue.shouldNotBeNull().value
+    } shouldBe "Spareribs"
   }
 
   @Test
@@ -35,7 +38,10 @@ class DecisionTest {
 
     val result = processEngine.decisionService.evaluateDecisionTableByKey("dish", inputs)
 
-    result.getDesiredDishOrFail() shouldBe "Dry Aged Gourmet Steak"
+    val desiredDish = result.singleResult.getEntryTyped<StringValue>("desiredDish").shouldNotBeNull().value
+    desiredDish shouldBe "Dry Aged Gourmet Steak"
+    val confidence = result.singleResult.getEntryTyped<IntegerValue>("confidence").shouldNotBeNull().value
+    confidence shouldBe 42
   }
 
   @Test
@@ -44,11 +50,10 @@ class DecisionTest {
 
     val result = processEngine.decisionService.evaluateDecisionTableByKey("dish", inputs)
 
-    result.getDesiredDishOrFail() shouldBe "Fuck you!"
+    val desiredDish = result.singleResult.getEntryTyped<StringValue>("desiredDish").shouldNotBeNull().value
+    desiredDish shouldBe "Fuck you!"
+    val confidence = result.singleResult.getEntryTyped<IntegerValue>("confidence").shouldNotBeNull().value
+    confidence shouldBe 100
   }
 }
 
-private fun DmnDecisionTableResult.getDesiredDishOrFail(): String {
-  val stringValue = singleResult.getEntryTyped<StringValue>("desiredDish")
-  return stringValue.shouldNotBeNull().value
-}

@@ -29,7 +29,13 @@
       <bpmn:incoming>Flow_0phkb0q</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:sequenceFlow id="Flow_1e201md" sourceRef="VerifyName" targetRef="Dishes" />
-    <bpmn:businessRuleTask id="Dishes" name="Desired Dish" camunda:resultVariable="desiredDish" camunda:decisionRef="dish" camunda:mapDecisionResult="singleEntry">
+    <bpmn:businessRuleTask id="Dishes" name="Desired Dish" camunda:resultVariable="decisionResults" camunda:decisionRef="dish" camunda:mapDecisionResult="singleResult">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:outputParameter name="desiredDish">${decisionResults.get("desiredDish")}</camunda:outputParameter>
+          <camunda:outputParameter name="confidence">${decisionResults.get("confidence")}</camunda:outputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
       <bpmn:incoming>Flow_1e201md</bpmn:incoming>
       <bpmn:outgoing>Flow_02oki0r</bpmn:outgoing>
     </bpmn:businessRuleTask>
